@@ -1,0 +1,254 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- Toaster file-->
+<script src="./jquery.toaster.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<style>
+    input[type=checkbox], input[type=radio] {
+        margin: 10px 0 0;
+    }
+
+    .text-muted {
+        color: #010b14 !important;
+    }
+
+    .container {
+        width: auto;
+        max-width: 650px;
+    }
+
+    .col-lg-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    tr:nth-child(even) {
+        background-color: #FFFFE0;
+    }
+
+    .jc-SB {
+        justify-content: space-between;
+    }
+
+    .card {
+        box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+        margin-bottom: 1rem;
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background: linear-gradient(to top left, #cc99ff 0%, #003366 100%);
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+        flex: 1 1 auto;
+        padding: 1.25rem;
+        margin-top: 3rem;
+    }
+
+
+    .card-header {
+        background-color: #deb8b8;
+        border-bottom: 1px solid rgba(0,0,0,.125);
+        padding: .75rem 1.25rem;
+        position: relative;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,.03);
+        border-bottom: 0 solid rgba(0,0,0,.125);
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: #deb8b8;
+        border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+
+
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+
+    user agent stylesheet
+    div {
+        display: block;
+    }
+
+
+    .btn {
+        background-color: #003366;
+        width: 100%;
+        color: #dee2e6;
+    }
+
+    .message {
+        margin: 15px 0 0;
+        color: #b3b3b3;
+    }
+
+        .message a {
+            color: #003366;
+            text-decoration: none;
+        }
+
+    a:not([href]):not([tabindex]) {
+        color: #003366;
+        text-decoration: none;
+    }
+
+    #toast-container > .toast {
+        background-image: none !important;
+    }
+
+    #toast-container > div {
+        padding: 15px;
+        width: auto;
+        font-size: 1.1em;
+    }
+
+    .toast-success {
+        background-color: #226d22;
+    }
+
+    .toast-title {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+    }
+
+    .toast-message .label-row {
+        display: block;
+        color: #98c563;
+        transition: all .5 ease;
+    }
+
+    .label-row input {
+        top: -2px;
+        position: relative;
+    }
+
+    .toast-message .label-row.complete {
+        /*   text-decoration: line-through; */
+        color: #e9f3dd;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container-fluid">
+    <div id="toast-box" style="display:none;"></div>
+
+    <div class="col-lg-12">
+        <!--LOG IN DIV-->
+        <div class="card" id="logindiv">
+
+            <div class="card-body cust-overflow-box">
+                <!--user Name-->
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Please Enter Email-ID " tabindex="1" maxlength="50" autocomplete="off" id="showuserEmail" onfocus="DataClear('#showuserEmail','#showUserEmailValidation')">
+                    <small id="showUserEmailValidation" class="form-text text-muted validationStyle"></small>
+                </div>
+                <!--user Password-->
+
+                <div class="row">
+                    <!--user Address-->
+                    <div class="col-md-11">
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Please Enter Password" tabindex="3" maxlength="50" autocomplete="off" id="showuserpassword" onfocus="DataClear('#showuserpassword','#showUserPasswordValidation')">
+
+                            <small id="showUserPasswordValidation" class="form-text text-muted validationStyle"></small>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <!-- An element to toggle between password visibility -->
+                        <input type="checkbox" onclick="showPasswordLogin()" title="Show Password">
+                    </div>
+
+                </div>
+
+            </div>
+            <!--Button-->
+            <div id="actionButton" class="col-md-12 field-button" style="padding-top:15px">
+                <button type="button" tabindex="3" class="btn btn-color" onclick="DoCheckUser()" id="submitbtn">LOGIN</button>
+            </div>
+            <p class="message"> Not registerd ? <a herf="#" onclick="DoSignUP()"> Create an Account</a></p>
+        </div>
+
+        <!--SIGN UP DIV-->
+        <div class="card" id="Signupndiv">
+
+            <div class="card-body cust-overflow-box">
+                <!--user Name-->
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name" tabindex="1" maxlength="50" autocomplete="off" id="adduserName" onfocus="DataClear('#adduserName','#addUserNameValidation')" onkeypress="avoidSplChars(event)">
+                    <small id="addUserNameValidation" class="form-text text-muted validationStyle"></small>
+                </div>
+                <!--user Email-->
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Email" tabindex="2" maxlength="50" autocomplete="off" id="adduseremail" onfocus="DataClear('#adduseremail','#adduserEmailValidation')">
+                    <small id="adduserEmailValidation" class="form-text text-muted validationStyle"></small>
+                </div>
+                <!--user Password-->
+
+                <div class="row">
+                    <!--user Address-->
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" tabindex="3" maxlength="50" autocomplete="off" id="adduserpassword" onfocus="DataClear('#adduserpassword','#addUserPasswordValidation')">
+
+                            <small id="addUserPasswordValidation" class="form-text text-muted validationStyle"></small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- An element to toggle between password visibility -->
+                        <input type="checkbox" onclick="showPassword()">  Show Password
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <!--user Address-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Location" tabindex="4" maxlength="100" autocomplete="off" id="addusereAddress" onfocus="DataClear('#addusereAddress','#addusereAddressValidation')" onkeypress="avoidSplChars(event)">
+                        <small id="addusereAddressValidation" class="form-text text-muted validationStyle"></small>
+                    </div>
+                </div>
+
+                <!--user Contact-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Contact" tabindex="5" maxlength="11" autocomplete="off" id="addusercontact" onfocus="DataClear('#addusercontact','#addusercontactValidation')" onkeypress="avoidSplChars(event)">
+                        <small id="addusercontactValidation" class="form-text text-muted validationStyle"></small>
+                    </div>
+                </div>
+            </div>
+            <!--Button-->
+            <div id="actionButton" class="col-md-12 field-button" style="padding-top:15px">
+                <button type="button" tabindex="6" class="btn btn-color" onclick="DoAddUser()" id="submitbtn">SIGNUP</button>
+            </div>
+            <p class="message"> Already registerd ?<a herf="#" onclick="DoSignIN()"> SignIn</a></p>
+        </div>
+    </div>
+
+</div>
+<script src="~/js/User.js" asp-append-version="true"></script>
